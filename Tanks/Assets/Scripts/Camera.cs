@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour {
-    
-    public GameObject player;
+public class Camera : MonoBehaviour
+{
+
+    private GameObject transCam;
     private Vector3 ofSetes;
 
     void Start()
     {
-        ofSetes = transform.position - player.transform.position;
+        if (transCam == null)
+            transCam = GameObject.FindWithTag("TransCam");
+
+      //  ofSetes = transform.position - transCam.transform.position;
     }
     void LateUpdate()
     {
-        transform.position = player.transform.position + ofSetes;
+        transform.position = transCam.transform.position;
+        transform.rotation = transCam.transform.rotation;
     }
 }
+    

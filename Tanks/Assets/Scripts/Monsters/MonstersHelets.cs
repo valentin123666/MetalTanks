@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class MonstersHelets : MonoBehaviour {
     public float healt = 20f;
     public float armor= 0.5f;
+        
+    private GameObject obj;
 
     
 
     void Start()
     {
-
+        if (obj == null)
+            obj = GameObject.FindWithTag("Magic");
     }
 
 
@@ -20,7 +23,7 @@ public class MonstersHelets : MonoBehaviour {
         if (healt <= 0)
         {
             Destroy(gameObject);
-            GetComponent<Canvas>().countMorder++;
+            obj.GetComponent<Canvas>().countMorder++;
         }
     }
 }

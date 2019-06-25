@@ -7,8 +7,7 @@ public class BulletAction2 : MonoBehaviour {
     Rigidbody rd;
 
     public float speed;
-
-    private float damag = 2f;
+    public float damag ;
 
     void Start () {
         rd = GetComponent<Rigidbody>();

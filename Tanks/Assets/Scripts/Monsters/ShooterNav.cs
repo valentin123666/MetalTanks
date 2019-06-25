@@ -11,11 +11,16 @@ public class ShooterNav : MonoBehaviour {
     private Transform target, owner;
   
     [SerializeField]
-    GameObject Bullet, centerG, player;
+    GameObject Bullet, centerG;
+
+    GameObject player;
     NavMeshAgent agent;
 
     void Start()
     {
+        if (player == null)
+            player = GameObject.FindWithTag("Tanks");
+
         target = player.transform;
         owner = transform;
         shootDelayeCount = 0;
@@ -26,31 +31,24 @@ public class ShooterNav : MonoBehaviour {
 
     void Update()
     {
-        var direction = owner.position - target.position;
-        direction = direction.normalized;
-        
-
-        if(Vector3.Angle(direction,-owner.forward)<5)
+               
+        if (Vector3.Angle(target.position,-owner.forward)<5)
         {
-            Shoot();
+       
         }
-
-        float Distance = Vector3.Distance(owner.position, target.transform.position);
-        if (Distance == 0.0f)
-            Distance = 1e-05f;
+        
         RaycastHit hit;
 
-        if (Physics.Raycast(direction, transform.TransformDirection(-Vector3.forward),out hit, direction.magnitude))
+        if (Physics.Raycast(owner.position+transform.up, transform.TransformDirection(Vector3.forward), out hit,60f) && (hit.collider.tag != "Wall") && (hit.collider.tag != "Monsters") && (hit.collider.tag == "Tanks"))
         {
-            agent.isStopped = true;
-            var targetRotation = direction;
-            direction.y = 0;
-            owner.rotation = Quaternion.Lerp(owner.rotation, Quaternion.LookRotation(targetRotation) , Time.deltaTime*speed); 
+            //Debug.Log("******");            
+                agent.isStopped = true;
+                Shoot();                     
         }
         else
-        {
-            agent.isStopped = false;
-            agent.SetDestination(target.position);
+        {            
+               agent.isStopped = false;
+               agent.SetDestination(target.position);
         }
     }
 

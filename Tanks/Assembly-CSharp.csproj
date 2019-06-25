@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera.cs" />
      <Compile Include="Assets\Scripts\Canvas.cs" />
+     <Compile Include="Assets\Scripts\Menu\Button.cs" />
      <Compile Include="Assets\Scripts\Monsters\Bour.cs" />
      <Compile Include="Assets\Scripts\Monsters\BulletMon.cs" />
      <Compile Include="Assets\Scripts\Monsters\MchiineNav.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\Player\BulletDis.cs" />
      <Compile Include="Assets\Scripts\Player\MotionTanks.cs" />
      <Compile Include="Assets\Scripts\Player\TanksHels.cs" />
+     <Compile Include="Assets\Scripts\Spawn.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
