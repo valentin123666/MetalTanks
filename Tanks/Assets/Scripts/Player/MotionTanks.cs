@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MotionTanks : MonoBehaviour {
-    private Rigidbody rd;
-    private GameObject obj;
-
-    public float moveSpeed , turnSpeed;
-    public bool flag;
+     Rigidbody rd;
+     GameObject obj ;
+    
+    public float moveSpeedForw,moveSpeedBakc , turnSpeed;
+    public bool flagOver, flagWin;
 
 
     void Awake()
@@ -17,55 +17,49 @@ public class MotionTanks : MonoBehaviour {
     }
     void Start()
     {
+
         rd = GetComponent<Rigidbody>();
-        flag = false;
+        flagOver = false;
+        flagWin = false;
     }
 
 
     void Update()
     {
-        if (flag == false)
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
-            Moving(1);
-
-        if (Input.GetKey(KeyCode.DownArrow))
-            Moving(2);
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-            Moving(3);
-
-        if (Input.GetKey(KeyCode.RightArrow))
-            Moving(4);
-        }
-        else
-        {
-            GameOver();
-        }
+        Moving();        
     }
 
-    void Moving(int click)
+    void Moving()
     {
-        
-            switch (click)
+        if (flagOver == false && flagWin == false)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+                rd.transform.Translate(Vector3.forward * moveSpeedForw * Time.deltaTime);
+
+            if (Input.GetKey(KeyCode.DownArrow))
+                rd.transform.Translate(-Vector3.forward * moveSpeedBakc * Time.deltaTime);
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+                rd.transform.Rotate(-Vector3.up * turnSpeed * Time.deltaTime);
+
+            if (Input.GetKey(KeyCode.RightArrow))
+                rd.transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
+            else if (flagOver == true && flagWin == false)
             {
-                case 1:
-                    rd.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-                    break;
-                case 2:
-                    rd.transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
-                    break;
-                case 3:
-                    rd.transform.Rotate(-Vector3.up * turnSpeed * Time.deltaTime);
-                    break;
-                case 4:
-                    rd.transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
-                    break;
+                GameOver();
             }
-                  
+            else if (flagOver == false && flagWin == true)
+            {
+                GameWin();
+            }
+        }
     }
     void GameOver()
     {
-        obj.GetComponent<Canvas>().GameOver = "GameOver";
+        obj.GetComponent<Canvas>().Game = "GameOver";
+    }
+    void GameWin()
+    {
+        obj.GetComponent<Canvas>().Game = "Yor Win!!!";
     }
 }

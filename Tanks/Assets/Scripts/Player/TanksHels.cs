@@ -15,7 +15,7 @@ public class TanksHels : MonoBehaviour {
     {
         if (healt <= 0)
         {
-            gameObject.GetComponent<MotionTanks>().flag = true;
+            gameObject.GetComponent<MotionTanks>().flagOver = true;
         }
     }
 }

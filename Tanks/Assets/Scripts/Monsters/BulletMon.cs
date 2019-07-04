@@ -24,7 +24,7 @@ public class BulletMon : MonoBehaviour
 
         if (other.tag == "Tanks")
         {
-            if (getCom != null)
+            if (getCom != null&&getCom.healt>0)
             {
                 getCom.healt -= damag * (1 - getCom.armor);
                 Destroy(gameObject);

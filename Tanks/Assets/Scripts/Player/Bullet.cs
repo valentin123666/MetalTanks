@@ -25,7 +25,8 @@ public class Bullet : MonoBehaviour {
     
     void Update()
     {
-        if (gameObject.GetComponent<MotionTanks>().flag == false)
+        var get = gameObject.GetComponent<MotionTanks>();
+        if (get.flagOver == false&&get.flagWin==false)
         {
             if (Input.GetKey(KeyCode.X) && flag == false && shootDelayeCountLitle <= 0)
             {

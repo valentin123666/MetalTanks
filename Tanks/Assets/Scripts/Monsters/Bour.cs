@@ -9,15 +9,13 @@ public class Bour : MonoBehaviour {
 		
 	}
 
-    void FixedUpdate()
-    {
-        gameObject.transform.Rotate(Vector3.forward * RotateSpeed * Time.deltaTime);
-    }
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Tanks")
+        var GetHels = other.GetComponent<TanksHels>();
+        if (other.tag == "Tanks"&&GetHels.healt>0)
         {
-            other.GetComponent<TanksHels>().healt -= damag * (1 - other.GetComponent<TanksHels>().armor);
+            GetHels.healt -= damag * (1 - other.GetComponent<TanksHels>().armor);
+            gameObject.transform.Rotate(Vector3.forward * RotateSpeed * Time.deltaTime);
         }
     }
 }

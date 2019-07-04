@@ -7,30 +7,65 @@ public class Canvas : MonoBehaviour {
         
     GameObject player;
     [SerializeField]
-    Text txtHeal , txtMorder,txtWeapon,txtGameOver;
+    Text txtHeal , txtMorder,txtWeapon,txtGame;    
+    Light linght;
+
+    [SerializeField]
+    GameObject myLing;
+
+    private float lin = 0.2f;
 
     public float countHeal, countMorder;
-    public string GameOver;
+    public string Game;
        
     void Start () {
+        linght = myLing.GetComponent<Light>();
+        
         if (player == null)
             player = GameObject.FindWithTag("Tanks");
-
+                
         countMorder = 0;
-        countMorder = 0;
-        GameOver = "";
+        Game = "";
     }
 	
 	
 	void Update () {
         countHeal = player.GetComponent<TanksHels>().healt;
+
         setText();
-	}
+
+        if(countMorder>=10)
+        {
+            player.GetComponent<MotionTanks>().flagWin = true;                       
+        }
+
+        if (Game== "GameOver")
+        {
+            GameOver();
+        }
+    }
     void setText()
     {
         txtHeal.text = "Health: " + countHeal.ToString();
         txtMorder.text = "Morder: " + countMorder.ToString();
         txtWeapon.text = "Weapon: " + player.GetComponent<Bullet>().weapon;
-        txtGameOver.text = GameOver;
+        txtGame.text = Game;
+    }
+    void GameOver()
+    {
+        linght.intensity = linght.intensity - lin * Time.deltaTime;
+
+        if (PlayerPrefs.GetFloat("Score") <= countMorder)
+        {
+            PlayerPrefs.SetFloat("Score", countMorder);
+
+        }
+        if (linght.intensity == 0)
+            Application.LoadLevel("GameOver");
+
+
+        if (Input.GetKey(KeyCode.Space))
+            Application.LoadLevel("GameOver");
+
     }
 }

@@ -8,4 +8,12 @@ public class Button : MonoBehaviour {
     {
         Application.LoadLevel("Level1");
     }
+    public void ButtonRestart()
+    {
+        Application.LoadLevel("Level1");
+    }
+    public void ButtonMenu()
+    {
+        Application.LoadLevel("Menu");
+    }
 }

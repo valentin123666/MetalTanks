@@ -1,33 +1,69 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour {
-
+public class Spawn : MonoBehaviour
+{
     [SerializeField]
-    private GameObject player, bour, machine, centerMaps, spawn1,spawn2;
+    private GameObject player, bour, machine, centerMaps;
+    [SerializeField]
+    private List<GameObject> _spawnPoints;
+    [SerializeField]
+    private float _timeout = 3;
+    private int countMachine = 0, countBour = 0;
+    private float _lastTime;
 
-    private int countMachine = 0,countBour=0;
-    private float timeBour, timeMacine;
-
-	void Awake() {
-        Instantiate(player, centerMaps.transform.position, Quaternion.identity);       
-    }    
-     void Update()
+    private void Awake()
     {
-        if(countMachine < 7&&timeMacine<=0)
-        {            
-            Instantiate(machine, spawn2.transform.position, Quaternion.identity);
-            countMachine++;
-            timeMacine= 3f;
-        }
-        if(countBour<3&&timeBour<=0)
+        Instantiate(player, centerMaps.transform.position, Quaternion.identity);
+    }
+
+    private void Update()
+    {
+        Tick();
+    }
+
+    private void Tick()
+    {
+        if (Time.time - _lastTime < _timeout)
         {
-            Instantiate(bour, spawn1.transform.position, Quaternion.identity);
-            countBour++;
-            timeBour = 3f;
+            return;
         }
-        timeMacine -= Time.deltaTime;
-        timeBour -= Time.deltaTime;
+        _lastTime = Time.time;
+
+        GameObject prefabAgent = null;
+
+        if (countMachine < 7 && countBour < 3)
+        {
+            if (Random.Range(0, 4) == 0)
+            {
+                prefabAgent = bour;
+                countBour++;
+            }
+            else
+            {
+                prefabAgent = machine;
+                countMachine++;
+            }
+        }
+        else if (countBour < 3)
+        {
+            prefabAgent = bour;
+            countBour++;
+        }
+        else if (countMachine < 7)
+        {
+            prefabAgent = machine;
+            countMachine++;
+        }
+
+        if (prefabAgent != null)
+        {
+            Instantiate(prefabAgent, GetRandomSpawnPoint().transform.position, Quaternion.identity);
+        }
+    }
+
+    private GameObject GetRandomSpawnPoint()
+    {
+        return _spawnPoints[Random.Range(0, _spawnPoints.Count)];
     }
 }
