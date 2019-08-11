@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     
-    public GameObject Bollet, Centr, BigBollet, BFGCentr;
+    public GameObject  Centr,  BFGCentr;
 
+   
     public float shootDelayeLitle;
     public float shootDelayeBig;
     public string weapon;
@@ -17,6 +18,7 @@ public class Bullet : MonoBehaviour {
 
     void Start()
     {
+       
         weapon = "LFG";
         flag = false;
         shootDelayeCountLitle = 0;
@@ -77,14 +79,14 @@ public class Bullet : MonoBehaviour {
     }
     void BulletLitle()
     {
-        Instantiate(Bollet, Centr.transform.position, Centr.transform.rotation);
+        GameObject bulletLitle = PoolMenedjer.GetObject("Capsule", Centr.transform.position, Centr.transform.rotation);
         shootDelayeCountLitle = shootDelayeLitle;
         
     }
 
     void BulletBig()
     {
-        Instantiate(BigBollet, BFGCentr.transform.position, BFGCentr.transform.rotation);
+        GameObject bulletBFG = PoolMenedjer.GetObject("Capsule 1", BFGCentr.transform.position, BFGCentr.transform.rotation);       
         shootDelayeCountBig = shootDelayeBig;
     }
 }

@@ -13,7 +13,9 @@ public class MotionTanks : MonoBehaviour {
     void Awake()
     {
         if (obj == null)
+        {
             obj = GameObject.FindWithTag("Magic");
+        }
     }
     void Start()
     {
@@ -26,7 +28,16 @@ public class MotionTanks : MonoBehaviour {
 
     void Update()
     {
-        Moving();        
+        Moving();
+
+        if (flagOver == true && flagWin == false)
+        {
+            GameOver();
+        }
+        if (flagOver == false && flagWin == true)
+        {
+            GameWin();
+        }
     }
 
     void Moving()
@@ -44,14 +55,7 @@ public class MotionTanks : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.RightArrow))
                 rd.transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
-            else if (flagOver == true && flagWin == false)
-            {
-                GameOver();
-            }
-            else if (flagOver == false && flagWin == true)
-            {
-                GameWin();
-            }
+           
         }
     }
     void GameOver()

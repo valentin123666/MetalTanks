@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bour : MonoBehaviour {
     
-    float RotateSpeed= 200, damag = 0.5f;
+    float RotateSpeed= 200, damag = 0.2f;
     void Start () {
 		
 	}

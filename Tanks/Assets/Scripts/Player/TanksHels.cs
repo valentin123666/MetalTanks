@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TanksHels : MonoBehaviour {
-    public float healt = 100f;
-    public float armor = 0.2f;
+    public float healt;
+    public float armor;
     void Start()
     {
-
+        healt = 100f;
+        armor = 0.2f;
     }
 
 

@@ -46,23 +46,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Camera.cs" />
-     <Compile Include="Assets\Scripts\Canvas.cs" />
+     <Compile Include="Assets\Scripts\Level\Camera.cs" />
+     <Compile Include="Assets\Scripts\Level\Canvas.cs" />
+     <Compile Include="Assets\Scripts\Level\MazeSpawn.cs" />
+     <Compile Include="Assets\Scripts\Level\MazzeGenirator.cs" />
+     <Compile Include="Assets\Scripts\Level\Records.cs" />
+     <Compile Include="Assets\Scripts\Level\Spawn.cs" />
      <Compile Include="Assets\Scripts\Menu\Button.cs" />
      <Compile Include="Assets\Scripts\Monsters\Bour.cs" />
      <Compile Include="Assets\Scripts\Monsters\BulletMon.cs" />
-     <Compile Include="Assets\Scripts\Monsters\MchiineNav.cs" />
+     <Compile Include="Assets\Scripts\Monsters\HelsBour.cs" />
      <Compile Include="Assets\Scripts\Monsters\MonsterNav.cs" />
      <Compile Include="Assets\Scripts\Monsters\MonstersHelets.cs" />
      <Compile Include="Assets\Scripts\Monsters\ShooterNav.cs" />
      <Compile Include="Assets\Scripts\Player\Bullet.cs" />
-     <Compile Include="Assets\Scripts\Player\BulletAction.cs" />
      <Compile Include="Assets\Scripts\Player\BulletAction2.cs" />
-     <Compile Include="Assets\Scripts\Player\BulletDis.cs" />
+     <Compile Include="Assets\Scripts\Player\Explousion\ControlExplousion.cs" />
+     <Compile Include="Assets\Scripts\Player\Explousion\Explousion.cs" />
+     <Compile Include="Assets\Scripts\Player\Explousion\Return.cs" />
      <Compile Include="Assets\Scripts\Player\MotionTanks.cs" />
      <Compile Include="Assets\Scripts\Player\TanksHels.cs" />
-     <Compile Include="Assets\Scripts\Records.cs" />
-     <Compile Include="Assets\Scripts\Spawn.cs" />
+     <Compile Include="Assets\Scripts\_Pool\ObjectPooling.cs" />
+     <Compile Include="Assets\Scripts\_Pool\PoolMenedjer.cs" />
+     <Compile Include="Assets\Scripts\_Pool\PoolObj.cs" />
+     <Compile Include="Assets\Scripts\_Pool\PoolSetup.cs" />
+     <Compile Include="Assets\Scripts\destro.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

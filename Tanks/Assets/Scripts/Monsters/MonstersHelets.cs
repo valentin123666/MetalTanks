@@ -7,7 +7,7 @@ public class MonstersHelets : MonoBehaviour {
     public float healt = 20f;
     public float armor= 0.5f;
         
-    private GameObject obj;
+    GameObject obj;
 
     
 
@@ -18,12 +18,13 @@ public class MonstersHelets : MonoBehaviour {
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         if (healt <= 0)
         {
-            Destroy(gameObject);
+          gameObject.GetComponent<PoolObj>().ReturnToPool();
             obj.GetComponent<Canvas>().countMorder++;
+            healt = 20f;
         }
     }
 }
