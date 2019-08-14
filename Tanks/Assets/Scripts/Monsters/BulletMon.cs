@@ -5,17 +5,17 @@ using UnityEngine;
 public class BulletMon : MonoBehaviour
 {
     Rigidbody rd;
-    [SerializeField]
-    GameObject explousion;
+ 
+    AudioSource audioSource;
 
     public float speed;
 
     private float damag = 1f;
-    
+
 
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
         rd = GetComponent<Rigidbody>();
         rd.AddRelativeForce(Vector3.up * speed, ForceMode.Impulse);
     }

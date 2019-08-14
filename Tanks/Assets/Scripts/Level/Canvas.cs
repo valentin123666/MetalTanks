@@ -39,12 +39,16 @@ public class Canvas : MonoBehaviour {
 
         slider.value = countHeal;
 
-        if(countMorder>=10)
+        if(countMorder>=GetComponent<MazeSpawn>().countMonsters)
         {
             player.GetComponent<MotionTanks>().flagWin = true;                       
         }
 
-        if (Game== "GameOver")
+        if (Game== "Game Over")
+        {
+            GameOver();
+        }
+        if (Game == "Yor Win!!!")
         {
             GameOver();
         }
@@ -66,12 +70,7 @@ public class Canvas : MonoBehaviour {
             PlayerPrefs.SetFloat("Score", countMorder);
 
         }
-        if (linght.intensity == 0)
-            Application.LoadLevel("GameOver");
-
-
-        if (Input.GetKey(KeyCode.Space))
-            Application.LoadLevel("GameOver");
-
+        if ((linght.intensity == 0)|| (Input.GetKey(KeyCode.Space)))
+            Application.LoadLevel("GameOver");       
     }
 }

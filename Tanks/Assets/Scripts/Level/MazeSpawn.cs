@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MazeSpawn : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class MazeSpawn : MonoBehaviour
 
     public int Witsth;
     public int Height;
+
+    public int countMonsters;
 
     public Vector3 CellSize = new Vector3(1, 1, 0);
 
@@ -98,10 +101,16 @@ public class MazeSpawn : MonoBehaviour
                    Spawn2= new Vector3(Xfloat-1f * CellSize.x, y * CellSize.y, y * CellSize.z);
                 }
                 #endregion
-       
+                GetComponent<NavMeshSurface>().BuildNavMesh();
             }
         }
     }
+
+    void Start()
+    {
+        countMonsters = contrrolBour + contrrolMachin;
+    }
+
     void Update()
     {
         Tick();

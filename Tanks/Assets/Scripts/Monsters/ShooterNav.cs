@@ -7,20 +7,23 @@ public class ShooterNav : MonoBehaviour {
     
     public float shootDelaye,speed;
 
-    private float shootDelayeCount;
-    private Transform target, owner;
+     float shootDelayeCount,timeClipe;
+     Transform target, owner;
   
     [SerializeField]
     GameObject Bullet, centerG;
 
+    AudioSource audio;
     GameObject player;
     NavMeshAgent agent;
 
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         if (player == null)
             player = GameObject.FindWithTag("Tanks");
 
+        timeClipe = audio.clip.length;
         target = player.transform;
         owner = transform;
         shootDelayeCount = 0;
@@ -43,6 +46,14 @@ public class ShooterNav : MonoBehaviour {
                agent.isStopped = false;
                agent.SetDestination(target.position);
         }
+
+        if(timeClipe < audio.clip.length)
+           timeClipe += Time.deltaTime;
+
+        
+        if (timeClipe > audio.clip.length)
+            timeClipe = audio.clip.length;
+
     }
 
     void FixedUpdate()
@@ -54,6 +65,15 @@ public class ShooterNav : MonoBehaviour {
     {
         if(shootDelayeCount<=0)
         {
+            if (PlayerPrefs.GetString("Sounds") == "on")
+            {
+                if (timeClipe == audio.clip.length)
+                {
+                    audio.volume = PlayerPrefs.GetFloat("Volume");
+                    audio.Play();
+                    timeClipe = 0;
+                }
+            }
             Instantiate(Bullet, centerG.transform.position, centerG.transform.rotation);
             shootDelayeCount = shootDelaye;
         }

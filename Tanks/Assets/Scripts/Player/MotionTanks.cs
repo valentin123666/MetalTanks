@@ -60,7 +60,7 @@ public class MotionTanks : MonoBehaviour {
     }
     void GameOver()
     {
-        obj.GetComponent<Canvas>().Game = "GameOver";
+        obj.GetComponent<Canvas>().Game = "Game Over";
     }
     void GameWin()
     {

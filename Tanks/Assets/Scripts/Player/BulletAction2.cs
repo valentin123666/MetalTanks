@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BulletAction2 : MonoBehaviour {
 
-    [SerializeField]
-    GameObject obj;
-
     Rigidbody rd; 
 
     public float speed;
