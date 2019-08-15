@@ -10,14 +10,14 @@ public class MonsterNav : MonoBehaviour {
     private GameObject player;
     private Transform target;
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Tanks");
         agent = GetComponent<NavMeshAgent>();
     }
 
 
-    void Update()
+    private void Update()
     {
         target = player.transform;
         agent.SetDestination(target.position);

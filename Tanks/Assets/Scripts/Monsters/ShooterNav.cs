@@ -7,17 +7,17 @@ public class ShooterNav : MonoBehaviour {
     
     public float shootDelaye,speed;
 
-     float shootDelayeCount,timeClipe;
-     Transform target, owner;
+    private float shootDelayeCount,timeClipe;
+    private Transform target, owner;
   
     [SerializeField]
-    GameObject Bullet, centerG;
+    private GameObject Bullet, centerG;
 
-    AudioSource audio;
-    GameObject player;
-    NavMeshAgent agent;
+    private AudioSource audio;
+    private GameObject player;
+    private NavMeshAgent agent;
 
-    void Start()
+    private void Start()
     {
         audio = GetComponent<AudioSource>();
         if (player == null)
@@ -32,7 +32,7 @@ public class ShooterNav : MonoBehaviour {
     }
 
 
-    void Update()
+    private void Update()
     {        
         RaycastHit hit;
 
@@ -56,12 +56,12 @@ public class ShooterNav : MonoBehaviour {
 
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         shootDelayeCount -= Time.deltaTime;
     }
 
-    void Shoot()
+    private void Shoot()
     {
         if(shootDelayeCount<=0)
         {
@@ -74,7 +74,7 @@ public class ShooterNav : MonoBehaviour {
                     timeClipe = 0;
                 }
             }
-            Instantiate(Bullet, centerG.transform.position, centerG.transform.rotation);
+            GameObject Bulet = PoolMenedger.GetObject("Capsule 2", centerG.transform.position, centerG.transform.rotation);
             shootDelayeCount = shootDelaye;
         }
     }

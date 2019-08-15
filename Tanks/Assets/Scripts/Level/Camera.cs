@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-
+    private float speed= 2;   
     private GameObject transCam;
-    private Vector3 ofSetes;
 
-    void Start()
+    private void Start()
     {
         if (transCam == null)
             transCam = GameObject.FindWithTag("TransCam");
     }
-    void LateUpdate()
+
+    private void LateUpdate()
     {
-        transform.position = transCam.transform.position;
-        transform.rotation = transCam.transform.rotation;
+        transform.SetPositionAndRotation(Vector3.Lerp(transform.position, transCam.transform.position, 2f), Quaternion.Lerp(transform.rotation,transCam.transform.rotation,Time.time*0.5f));
     }
 }
     

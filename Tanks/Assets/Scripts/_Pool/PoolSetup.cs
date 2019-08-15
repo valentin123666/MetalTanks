@@ -6,7 +6,7 @@ using UnityEngine;
 public class PoolSetup : MonoBehaviour {
 
     [SerializeField]
-    private PoolMenedjer.PoolPsrt[] pools;
+    private PoolMenedger.PoolPsrt[] pools;
 
     void OnValidate()
     {
@@ -23,6 +23,6 @@ public class PoolSetup : MonoBehaviour {
 
     void Initialize()
     {
-        PoolMenedjer.Initialize(pools);
+        PoolMenedger.Initialize(pools);
     }
 }

@@ -55,10 +55,9 @@
   <ItemGroup>
      <Compile Include="Assets\BourNavigation.cs" />
      <Compile Include="Assets\Scripts\_Pool\ObjectPooling.cs" />
-     <Compile Include="Assets\Scripts\_Pool\PoolMenedjer.cs" />
+     <Compile Include="Assets\Scripts\_Pool\PoolMenedger.cs" />
      <Compile Include="Assets\Scripts\_Pool\PoolObj.cs" />
      <Compile Include="Assets\Scripts\_Pool\PoolSetup.cs" />
-     <Compile Include="Assets\Scripts\destro.cs" />
      <Compile Include="Assets\Scripts\Level\Camera.cs" />
      <Compile Include="Assets\Scripts\Level\Canvas.cs" />
      <Compile Include="Assets\Scripts\Level\MazeSpawn.cs" />
@@ -75,12 +74,10 @@
      <Compile Include="Assets\Scripts\Monsters\ShooterNav.cs" />
      <Compile Include="Assets\Scripts\Player\Bullet.cs" />
      <Compile Include="Assets\Scripts\Player\BulletAction2.cs" />
-     <Compile Include="Assets\Scripts\Player\Explousion\ControlExplousion.cs" />
-     <Compile Include="Assets\Scripts\Player\Explousion\Explousion.cs" />
      <Compile Include="Assets\Scripts\Player\Explousion\Return.cs" />
      <Compile Include="Assets\Scripts\Player\Explousion\ReturnBum.cs" />
      <Compile Include="Assets\Scripts\Player\MotionTanks.cs" />
-     <Compile Include="Assets\Scripts\Player\TanksHels.cs" />
+     <Compile Include="Assets\Scripts\Player\TankHealth.cs" />
      <None Include="Assets\NavMeshComponents-master\ProjectSettings\ProjectVersion.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Home/Downloads/валик/MetalTanks-master/Tanks/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

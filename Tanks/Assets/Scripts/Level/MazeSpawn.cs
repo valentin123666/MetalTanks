@@ -25,7 +25,63 @@ public class MazeSpawn : MonoBehaviour
 
     public Vector3 CellSize = new Vector3(1, 1, 0);
 
-    void Awake()
+    private void Awake()
+    {
+        Spawn();
+
+        GetComponent<NavMeshSurface>().BuildNavMesh();
+    }
+
+    private void Start()
+    {
+        countMonsters = contrrolBour + contrrolMachin;
+    }
+
+    private void Update()
+    {
+        Tick();
+    }
+    private void Tick()
+    {
+        if (Time.time - _lastTime < _timeout)
+        {
+            return;
+        }
+        _lastTime = Time.time;
+
+        string prefabAgent = null;
+
+        if (countMachine < contrrolMachin && countBour < contrrolBour)
+        {
+            if (Random.Range(0, 4) == 0)
+            {
+                prefabAgent = "MonstersBour";
+                countBour++;
+            }
+            else
+            {
+                prefabAgent = "MonstersMchine";
+                countMachine++;
+            }
+        }
+        else if (countBour < contrrolBour)
+        {
+            prefabAgent = "MonstersBour";
+            countBour++;
+        }
+        else if (countMachine < contrrolMachin)
+        {
+            prefabAgent = "MonstersMchine";
+            countMachine++;
+        }
+
+        if (prefabAgent != null)
+        {
+            GameObject monsers = PoolMenedger.GetObject(prefabAgent, GetRandomSpawnPoint(), Quaternion.identity);
+        }
+    }
+
+    private void Spawn()
     {
         MazzeGenirator generator = new MazzeGenirator();
         MazeGineratorCell[,] maze = generator.GinerateMaze(Witsth, Height);
@@ -93,65 +149,15 @@ public class MazeSpawn : MonoBehaviour
                 }
                 if ((x == maze.GetLength(0) - 2) && (y == maze.GetLength(1) - 2))
                 {
-                 Spawn1 = new  Vector3(x * CellSize.x, y * CellSize.y, y * CellSize.z);
+                    Spawn1 = new Vector3(x * CellSize.x, y * CellSize.y, y * CellSize.z);
                 }
                 if ((x == 2) && (y == maze.GetLength(1) - 2))
                 {
                     Xfloat = Xfloat * 10;
-                   Spawn2= new Vector3(Xfloat-1f * CellSize.x, y * CellSize.y, y * CellSize.z);
+                    Spawn2 = new Vector3(Xfloat - 1f * CellSize.x, y * CellSize.y, y * CellSize.z);
                 }
                 #endregion
-                GetComponent<NavMeshSurface>().BuildNavMesh();
             }
-        }
-    }
-
-    void Start()
-    {
-        countMonsters = contrrolBour + contrrolMachin;
-    }
-
-    void Update()
-    {
-        Tick();
-    }
-    private void Tick()
-    {
-        if (Time.time - _lastTime < _timeout)
-        {
-            return;
-        }
-        _lastTime = Time.time;
-
-        string prefabAgent = null;
-
-        if (countMachine < contrrolMachin && countBour < contrrolBour)
-        {
-            if (Random.Range(0, 4) == 0)
-            {
-                prefabAgent = "MonstersBour";
-                countBour++;
-            }
-            else
-            {
-                prefabAgent = "MonstersMchine";
-                countMachine++;
-            }
-        }
-        else if (countBour < contrrolBour)
-        {
-            prefabAgent = "MonstersBour";
-            countBour++;
-        }
-        else if (countMachine < contrrolMachin)
-        {
-            prefabAgent = "MonstersMchine";
-            countMachine++;
-        }
-
-        if (prefabAgent != null)
-        {
-            GameObject monsers = PoolMenedjer.GetObject(prefabAgent, GetRandomSpawnPoint(), Quaternion.identity);
         }
     }
 
@@ -161,14 +167,10 @@ public class MazeSpawn : MonoBehaviour
         if((rnd==0)||(rnd==2))
         {
             return Spawn1;
-            Debug.Log("" + Spawn1);
-
         }
         else
         {
             return Spawn2;
-            Debug.Log("" + Spawn2);
-
         }
 
     }

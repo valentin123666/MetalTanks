@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public static class PoolMenedjer {
+public static class PoolMenedger {
     private static PoolPsrt[] pools;
     private static GameObject objPerent;
     

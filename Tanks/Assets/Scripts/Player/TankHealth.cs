@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TanksHels : MonoBehaviour {
-    public float healt;
+public class TankHealth : MonoBehaviour {
+    public float health;
     public float armor;
-    void Start()
+    private void Start()
     {
-        healt = 100f;
+        health = 100f;
         armor = 0.2f;
     }
 
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (healt <= 0)
+        if (health <= 0)
         {
             gameObject.GetComponent<MotionTanks>().flagOver = true;
         }

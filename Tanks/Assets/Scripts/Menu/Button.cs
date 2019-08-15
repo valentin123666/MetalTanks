@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Button : MonoBehaviour {
 
-    AudioSource source;
+    private AudioSource source;
 
-    void Awake()
+    private void Awake()
     {
         source = GameObject.FindWithTag("Sound").GetComponent<AudioSource>();
     }

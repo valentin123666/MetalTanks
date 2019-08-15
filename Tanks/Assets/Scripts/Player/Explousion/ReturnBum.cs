@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ReturnBum : MonoBehaviour
 {
-    float f = 0.5f;
-    void Update()
+    private float f = 0.5f;
+    private void Update()
     {
         Invoke("ReturnObj", f);
     }
-    void ReturnObj()
+    private void ReturnObj()
     {
         GetComponent<PoolObj>().ReturnToPool();
         f = 0.5f;

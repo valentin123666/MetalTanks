@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Canvas : MonoBehaviour {
-        
-    GameObject player;
+
+    private GameObject player;
     [SerializeField]
-    Text txtHeal , txtMorder,txtWeapon,txtGame;    
-    Light linght;
+    private Text txtHeal , txtMorder,txtWeapon,txtGame;
+    private Light linght;
 
     [SerializeField]
-    GameObject myLing;
+    private GameObject myLing;
 
     [SerializeField]
-    Slider slider;
+    private Slider slider;
 
     private float lin = 0.2f;
 
     public float countHeal, countMorder;
     public string Game;
-       
-    void Start () {
+
+    private void Start () {
         linght = myLing.GetComponent<Light>();
         
         if (player == null)
@@ -30,10 +30,10 @@ public class Canvas : MonoBehaviour {
         countMorder = 0;
         Game = "";
     }
-	
-	
-	void Update () {
-        countHeal = player.GetComponent<TanksHels>().healt;
+
+
+    private void Update () {
+        countHeal = player.GetComponent<TankHealth>().health;
 
         setText();
 
@@ -54,14 +54,14 @@ public class Canvas : MonoBehaviour {
         }
 
     }
-    void setText()
+    private void setText()
     {
         txtHeal.text = "HEALTH ";
         txtMorder.text = "Morder: " + countMorder.ToString();
         txtWeapon.text = "Weapon: " + player.GetComponent<Bullet>().weapon;
         txtGame.text = Game;
     }
-    void GameOver()
+    private void GameOver()
     {
         linght.intensity = linght.intensity - lin * Time.deltaTime;
 

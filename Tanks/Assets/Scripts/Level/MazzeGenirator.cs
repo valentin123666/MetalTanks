@@ -7,8 +7,6 @@ public class MazeGineratorCell
 {
     public int X;
     public int Y;    
-
-    public bool Visited;
 }
 
 public class MazzeGenirator

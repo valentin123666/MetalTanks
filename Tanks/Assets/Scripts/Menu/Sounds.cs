@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class Sounds : MonoBehaviour
 {
     [SerializeField]
-    Slider slider;
+    private Slider slider;
 
     public Text txt;
     string txtBreaker;
-    
-    void Start ()
+
+    private void Start ()
     {
         slider.value = PlayerPrefs.GetFloat("Volume");
     }
 
-    void Update()
+    private void Update()
     {
         PlayerPrefs.SetFloat("Volume", slider.value);       
 

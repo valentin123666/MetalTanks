@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Bour : MonoBehaviour {
       
-    AudioSource audio;
+    private AudioSource audio;
 
-    float timeClipe;
+    private float timeClipe;
 
-    float RotateSpeed= 200, damag = 0.2f;
-    void Start () {
+    private float RotateSpeed = 200, damag = 0.2f;
+    private void Start () {
         audio = GetComponent<AudioSource>();
         audio.volume = PlayerPrefs.GetFloat("Volume");
         timeClipe = audio.clip.length;    
     }
 
-    void Update()
+    private void Update()
     {
         if(timeClipe<audio.clip.length)
         {
@@ -29,11 +29,11 @@ public class Bour : MonoBehaviour {
 
     }
 
-    void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         audio.volume = PlayerPrefs.GetFloat("Volume");
-        var GetHels = other.GetComponent<TanksHels>();
-        if (GetHels != null && GetHels.healt > 0)
+        var GetHels = other.GetComponent<TankHealth>();
+        if (GetHels != null && GetHels.health > 0)
         {
             if (other.tag == "Tanks")
             {
@@ -47,10 +47,10 @@ public class Bour : MonoBehaviour {
                     }
                 }
 
-                GetHels.healt -= damag * (1 - GetHels.armor);
+                GetHels.health -= damag * (1 - GetHels.armor);
 
                 gameObject.transform.Rotate(Vector3.forward * RotateSpeed * Time.deltaTime);
-               if (GetHels.healt < 0)
+               if (GetHels.health < 0)
                 {
                     audio.mute = true;
                 }
@@ -58,7 +58,7 @@ public class Bour : MonoBehaviour {
         }
               
     }
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {    
             audio.volume = 0;
     }    

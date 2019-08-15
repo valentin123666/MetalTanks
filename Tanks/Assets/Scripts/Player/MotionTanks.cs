@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MotionTanks : MonoBehaviour {
-     Rigidbody rd;
-     GameObject obj ;
+    private Rigidbody rd;
+    private GameObject obj ;
     
     public float moveSpeedForw,moveSpeedBakc , turnSpeed;
     public bool flagOver, flagWin;
 
 
-    void Awake()
+    private void Awake()
     {
         if (obj == null)
         {
             obj = GameObject.FindWithTag("Magic");
         }
     }
-    void Start()
+    private void Start()
     {
 
         rd = GetComponent<Rigidbody>();
@@ -26,7 +26,7 @@ public class MotionTanks : MonoBehaviour {
     }
 
 
-    void Update()
+    private void Update()
     {
         Moving();
 
@@ -40,7 +40,7 @@ public class MotionTanks : MonoBehaviour {
         }
     }
 
-    void Moving()
+    private void Moving()
     {
         if (flagOver == false && flagWin == false)
         {
@@ -58,11 +58,11 @@ public class MotionTanks : MonoBehaviour {
            
         }
     }
-    void GameOver()
+    private void GameOver()
     {
         obj.GetComponent<Canvas>().Game = "Game Over";
     }
-    void GameWin()
+    private void GameWin()
     {
         obj.GetComponent<Canvas>().Game = "Yor Win!!!";
     }

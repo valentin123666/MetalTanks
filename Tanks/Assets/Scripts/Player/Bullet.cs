@@ -13,15 +13,15 @@ public class Bullet : MonoBehaviour {
     public string weapon;
 
 
-    MotionTanks get;
-    AudioSource audioSource;
+    private MotionTanks get;
+    private AudioSource audioSource;
 
     private bool flag;
     private float shootDelayeCountLitle;
     private float shootDelayeCountBig;
     
 
-    void Start()
+    private void Start()
     {
         get = gameObject.GetComponent<MotionTanks>();
         audioSource = GetComponent<AudioSource>();
@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour {
         timeClipLFG = audioLFG.length;
     }
     
-    void Update()
+    private void Update()
     {
         Shot();
         shootDelayeCountLitle -= Time.deltaTime;
@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour {
             timeClipLFG = audioLFG.length;
     }
 
-    void Shot()
+    private void Shot()
     {
         
         if (get.flagOver == false && get.flagWin == false)
@@ -81,7 +81,7 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    string WeaponRename()
+    private string WeaponRename()
     {
         if (weapon == "LFG")
         {
@@ -95,7 +95,7 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    bool SwichFlag()
+    private bool SwichFlag()
     {
         if (flag == false)
         {
@@ -109,17 +109,17 @@ public class Bullet : MonoBehaviour {
             return flag;            
         }
     }
-    void BulletLitle()
+    private void BulletLitle()
     {      
-        GameObject bulletLitle = PoolMenedjer.GetObject("Capsule", Centr.transform.position, Centr.transform.rotation);
+        GameObject bulletLitle = PoolMenedger.GetObject("Capsule", Centr.transform.position, Centr.transform.rotation);
         shootDelayeCountLitle = shootDelayeLitle;
         
     }
 
-    void BulletBig()
+    private void BulletBig()
     {
-        GameObject Bum = PoolMenedjer.GetObject("Bum", bum.transform.position, bum.transform.rotation);
-        GameObject bulletBFG = PoolMenedjer.GetObject("Capsule 1", BFGCentr.transform.position, BFGCentr.transform.rotation);       
+        GameObject Bum = PoolMenedger.GetObject("Bum", bum.transform.position, bum.transform.rotation);
+        GameObject bulletBFG = PoolMenedger.GetObject("Capsule 1", BFGCentr.transform.position, BFGCentr.transform.rotation);       
         shootDelayeCountBig = shootDelayeBig;
     }
 }

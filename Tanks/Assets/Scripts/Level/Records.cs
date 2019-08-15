@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Records : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
             GetComponent<Text>().text = PlayerPrefs.GetFloat("Score").ToString();
     }

@@ -4,37 +4,40 @@ using UnityEngine;
 
 public class BulletMon : MonoBehaviour
 {
-    Rigidbody rd;
- 
-    AudioSource audioSource;
+    private Rigidbody rd;
+
+    private AudioSource audioSource;
 
     public float speed;
 
     private float damag = 1f;
 
 
-    void Start()
+    private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         rd = GetComponent<Rigidbody>();
-        rd.AddRelativeForce(Vector3.up * speed, ForceMode.Impulse);
+       // rd.AddRelativeForce(Vector3.up * speed, ForceMode.Impulse);
     }
-
-    void OnTriggerEnter(Collider other)
+    private void FixedUpdate()
+    {
+        rd.transform.Translate(Vector3.up * speed * Time.deltaTime);
+    }
+    private void OnTriggerEnter(Collider other)
     {
 
-        var getCom = other.GetComponent<TanksHels>();
+        var getCom = other.GetComponent<TankHealth>();
         if (other.tag == "Wall")
         {
-            GameObject Explousion = PoolMenedjer.GetObject("Explosion", transform.position, Quaternion.identity);
+            GameObject Explousion = PoolMenedger.GetObject("Explosion", transform.position, Quaternion.identity);
             GetComponent<PoolObj>().ReturnToPool();
         }
         if (other.tag == "Tanks")
         {
-            if (getCom != null&&getCom.healt>0)
+            if (getCom != null&&getCom.health>0)
             {
-                GameObject Explousion = PoolMenedjer.GetObject("Explosion", transform.position, Quaternion.identity); getCom.healt -= damag * (1 - getCom.armor);
-                getCom.healt -= damag * (1 - getCom.armor);
+                GameObject Explousion = PoolMenedger.GetObject("Explosion", transform.position, Quaternion.identity);                
+                getCom.health -= damag * (1 - getCom.armor);
                 GetComponent<PoolObj>().ReturnToPool();
             }
         }
