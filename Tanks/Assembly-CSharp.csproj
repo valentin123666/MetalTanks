@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BourNavigation.cs" />
      <Compile Include="Assets\Scripts\_Pool\ObjectPooling.cs" />
      <Compile Include="Assets\Scripts\_Pool\PoolMenedger.cs" />
      <Compile Include="Assets\Scripts\_Pool\PoolObj.cs" />
@@ -67,6 +66,7 @@
      <Compile Include="Assets\Scripts\Menu\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\Menu\Sounds.cs" />
      <Compile Include="Assets\Scripts\Monsters\Bour.cs" />
+     <Compile Include="Assets\Scripts\Monsters\BourNavigation.cs" />
      <Compile Include="Assets\Scripts\Monsters\BulletMon.cs" />
      <Compile Include="Assets\Scripts\Monsters\HelsBour.cs" />
      <Compile Include="Assets\Scripts\Monsters\MonsterNav.cs" />

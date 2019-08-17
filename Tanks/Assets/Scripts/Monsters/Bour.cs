@@ -30,13 +30,13 @@ public class Bour : MonoBehaviour {
     }
 
     private void OnTriggerStay(Collider other)
-    {
-        audio.volume = PlayerPrefs.GetFloat("Volume");
-        var GetHels = other.GetComponent<TankHealth>();
-        if (GetHels != null && GetHels.health > 0)
+    {        
+        if (other.tag == "Tanks")
         {
-            if (other.tag == "Tanks")
+            var GetHels = other.GetComponent<TankHealth>();
+            if (GetHels != null && GetHels.health > 0)
             {
+                audio.volume = PlayerPrefs.GetFloat("Volume");
                 if (PlayerPrefs.GetString("Sounds") == "on")
                 {
                     if (timeClipe == audio.clip.length)
@@ -50,12 +50,13 @@ public class Bour : MonoBehaviour {
                 GetHels.health -= damag * (1 - GetHels.armor);
 
                 gameObject.transform.Rotate(Vector3.forward * RotateSpeed * Time.deltaTime);
-               if (GetHels.health < 0)
+                if (GetHels.health < 0)
                 {
                     audio.mute = true;
                 }
             }
         }
+
               
     }
     private void OnTriggerExit(Collider other)
