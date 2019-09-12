@@ -23,7 +23,7 @@ public class MazeSpawn : MonoBehaviour
 
     public int countMonsters;
 
-    public Vector3 CellSize = new Vector3(1, 1, 0);
+    public Vector3 CellSize = new Vector3(0, 0, 0);
 
     private void Awake()
     {

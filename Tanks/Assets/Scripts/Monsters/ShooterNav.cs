@@ -36,7 +36,7 @@ public class ShooterNav : MonoBehaviour {
     {        
         RaycastHit hit;
 
-        if (Physics.Raycast(owner.position+transform.up, transform.TransformDirection(Vector3.forward), out hit,60f) && (hit.collider.tag != "Wall") && (hit.collider.tag != "Monsters") && (hit.collider.tag == "Tanks"))
+        if (Physics.Raycast(owner.position+transform.up, transform.TransformDirection(Vector3.forward), out hit,60f) && (hit.collider.tag == "Tanks"))
         {           
                 agent.isStopped = true;
                 Shoot();                     

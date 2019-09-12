@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour {
+public class Button : MonoBehaviour
+{
 
     private AudioSource source;
 
@@ -20,6 +21,18 @@ public class Button : MonoBehaviour {
         }
         Application.LoadLevel("Level1");
     }
+
+    public void ButtonExit()
+    {
+        if (PlayerPrefs.GetString("Sounds") == "on")
+        {
+            source.volume = PlayerPrefs.GetFloat("Volume");
+            source.Play();
+        }
+        Application.Quit();
+
+    }
+
     public void ButtonRestart()
     {
         if (PlayerPrefs.GetString("Sounds") == "on")
@@ -29,6 +42,7 @@ public class Button : MonoBehaviour {
         }
         Application.LoadLevel("Level1");
     }
+
     public void ButtonMenu()
     {
         if (PlayerPrefs.GetString("Sounds") == "on")
@@ -38,6 +52,7 @@ public class Button : MonoBehaviour {
         }
         Application.LoadLevel("Menu");
     }
+
     public void Sounds()
     {
         if (PlayerPrefs.GetString("Sounds") == "on")
